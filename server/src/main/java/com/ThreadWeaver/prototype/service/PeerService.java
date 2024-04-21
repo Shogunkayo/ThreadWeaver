@@ -1,19 +1,30 @@
 package com.ThreadWeaver.prototype.service;
 
+import com.ThreadWeaver.prototype.dto.PeerDTO;
+import com.ThreadWeaver.prototype.model.ChunkChecksum;
+import com.ThreadWeaver.prototype.model.ChunkChecksumPersist;
 import com.ThreadWeaver.prototype.model.FileChunk;
 import com.ThreadWeaver.prototype.model.Peer;
+import com.ThreadWeaver.prototype.repository.ChunkChecksumPersistRepository;
 import com.ThreadWeaver.prototype.repository.FileChunkRepository;
 import com.ThreadWeaver.prototype.repository.PeerRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 @Service
 public class PeerService {
-    private PeerRepository peerRepository;
-    private FileChunkRepository fileChunkRepository;
-    public List<Peer> selectPeersForUpload(int noFileChunks) {
+    private final PeerRepository peerRepository;
+    private final FileChunkRepository fileChunkRepository;
+
+    public PeerService(PeerRepository peerRepository, FileChunkRepository fileChunkRepository, ChunkChecksumPersistRepository chunkChecksumPersistRepository, FileChunkRepository fileChunkRepository1) {
+        this.peerRepository = peerRepository;
+        this.fileChunkRepository = fileChunkRepository1;
+    }
+
+    public List<PeerDTO> selectPeersForUpload(int noFileChunks) {
         List<Peer> onlinePeers = peerRepository.findOnlinePeers();
         onlinePeers.sort(Comparator.comparingInt(peer -> peer.getFileChunks().size()));
 
@@ -26,22 +37,39 @@ public class PeerService {
         }
 
         selectedPeers = selectedPeers.subList(0, noFileChunks);
-        return selectedPeers;
+
+        List<PeerDTO> selectedPeersDTO = new ArrayList<>();
+        for (Peer peer : selectedPeers) {
+            PeerDTO peerDTO = new PeerDTO();
+            peerDTO.setIpAddress(peer.getIpAddress());
+            peerDTO.setPort(peer.getPort());
+            selectedPeersDTO.add(peerDTO);
+        }
+        return selectedPeersDTO;
     }
 
-    public void registerPeer(Peer peer, List<FileChunk> fileChunks) {
+    public void registerPeer(Peer peer, List<ChunkChecksum> chunkChecksums) {
         // Check if the peer already exists based on IP address and port
         Optional<Peer> existingPeer = peerRepository.findByIpAddressAndPort(peer.getIpAddress(), peer.getPort());
 
         if (existingPeer.isPresent()) {
-            // Peer already exists, update its file chunks
+            // Peer already exists, update its file chunks and online status
             Peer existing = existingPeer.get();
-            existing.getFileChunks().addAll(fileChunks);
+            existing.setOnline(true);
             peerRepository.save(existing);
         } else {
             // Peer does not exist, save it along with its file chunks
-            peer.setFileChunks(fileChunks);
             peerRepository.save(peer);
+        }
+
+        if (chunkChecksums != null) {
+            for (ChunkChecksum chunkChecksum : chunkChecksums) {
+                FileChunk fileChunk = new FileChunk();
+                fileChunk.setChecksum(chunkChecksum.getChecksum());
+                fileChunk.setPeer(peer);
+                fileChunk.setChunkName(chunkChecksum.getChunkName());
+                fileChunkRepository.save(fileChunk);
+            }
         }
     }
 
@@ -66,6 +94,10 @@ public class PeerService {
 
     public void updatePeer(Peer peer) {
         peerRepository.save(peer);
+    }
+
+    public Optional<Peer> findByIpAddressAndPort (String ipAddress, int port) {
+        return peerRepository.findByIpAddressAndPort(ipAddress, port);
     }
 
     public List<Peer> getPeersContainingFileChunks(List<String> fileChunkNames) {

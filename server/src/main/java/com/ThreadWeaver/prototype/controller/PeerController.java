@@ -23,10 +23,16 @@ public class PeerController {
 
     @PostMapping("/register")
     public ResponseEntity<?> registerPeer(@RequestBody PeerRegistrationRequest request) {
+        System.out.println("Registering peer");
         try {
-            peerService.registerPeer(request.getPeer(), request.getFileChunks());
+            Peer peer = new Peer();
+            peer.setPort(request.getPort());
+            peer.setIpAddress(request.getIpAddress());
+            peer.setOnline(true);
+            peerService.registerPeer(peer, request.getChunkChecksums());
             return ResponseEntity.ok().body("Peer registered successfully.");
         } catch (Exception e) {
+            System.out.println(e.getMessage());
             return ResponseEntity.badRequest().body("Error registering peer: " + e.getMessage());
         }
     }

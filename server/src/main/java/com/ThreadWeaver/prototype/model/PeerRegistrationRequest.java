@@ -10,6 +10,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class PeerRegistrationRequest {
-    private Peer peer;
-    private List<FileChunk> fileChunks;
+    private String ipAddress;
+    private int port;
+    private List<ChunkChecksum> chunkChecksums;
 }

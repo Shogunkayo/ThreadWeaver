@@ -9,6 +9,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.annotations.CreationTimestamp;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @Data
 @NoArgsConstructor
@@ -28,12 +29,11 @@ public class FileMetadata {
     private String fileType;
     private String checksum;
 
-    @ElementCollection
-    private List<String> fileChunkNames;
+    @OneToMany(mappedBy = "fileMetadata", cascade = CascadeType.ALL)
+    private List<ChunkChecksumPersist> chunkChecksumPersists;
 
-    @ManyToOne
-    @JoinColumn(name = "ownerIp", referencedColumnName = "ipAddress")
-    private Peer ownerPeer;
+    private String ownerIp;
+    private int ownerPort;
 
     @CreationTimestamp
     private LocalDateTime createdOn;

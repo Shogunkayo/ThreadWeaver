@@ -16,16 +16,14 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "peer", uniqueConstraints = {@UniqueConstraint(columnNames = {"ipAddress", "port"})})
+@Table(name = "peer")
 public class Peer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true)
     private String ipAddress;
 
-    @Column(unique = true)
     private int port;
 
     private boolean online;

@@ -1,0 +1,7 @@
+com/ThreadWeaver/prototype/model/ChunkChecksumPersist$ChunkChecksumPersistBuilder.class
+com/ThreadWeaver/prototype/repository/ChunkChecksumPersistRepository.class
+com/ThreadWeaver/prototype/dto/FileMetadataDTO.class
+com/ThreadWeaver/prototype/model/ChunkChecksumPersist.class
+com/ThreadWeaver/prototype/model/UploadResponse.class
+com/ThreadWeaver/prototype/model/ChunkChecksum.class
+com/ThreadWeaver/prototype/dto/PeerDTO.class

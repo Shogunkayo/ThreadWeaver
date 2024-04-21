@@ -8,7 +8,12 @@ import java.util.Optional;
 
 @Service
 public class FileMetadataService {
-    private FileMetadataRepository fileMetadataRepository;
+    private final FileMetadataRepository fileMetadataRepository;
+
+    public FileMetadataService(FileMetadataRepository fileMetadataRepository) {
+        this.fileMetadataRepository = fileMetadataRepository;
+    }
+
     public FileMetadata saveFileMetadata(FileMetadata fileMetadata) {
         return fileMetadataRepository.save(fileMetadata);
     }

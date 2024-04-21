@@ -1,5 +1,6 @@
 package com.ThreadWeaver.prototype.controller;
 
+import com.ThreadWeaver.prototype.model.ChunkChecksumPersist;
 import com.ThreadWeaver.prototype.model.DownloadResponse;
 import com.ThreadWeaver.prototype.model.FileMetadata;
 import com.ThreadWeaver.prototype.model.Peer;
@@ -24,6 +25,7 @@ public class FileDownloadController {
     @Autowired
     private FileMetadataService fileMetadataService;
 
+    /*
     @PostMapping("/{fileId}")
     public ResponseEntity<?> handleDownloadRequest(@PathVariable Long fileId) {
         try {
@@ -31,7 +33,11 @@ public class FileDownloadController {
             FileMetadata fileMetadata = fileMetadataService.getFileMetadataById(fileId);
 
             // Check if all the peers containing the file chunks are currently online
-            List<Peer> peers = peerService.getPeersContainingFileChunks(fileMetadata.getFileChunkNames());
+            List<ChunkChecksumPersist> chunkChecksumPersists = fileMetadata.getChunkChecksumPersists();
+            List<String> chunkNames = chunkChecksumPersists.stream()
+                    .map(ChunkChecksumPersist::getChunkName)
+                    .toList();
+            List<Peer> peers = peerService.getPeersContainingFileChunks(chunkNames);
             boolean allPeersOnline = peers.stream().allMatch(Peer::isOnline);
 
             // If all peers are online, return a response with the list of online peers and file chunks
@@ -55,4 +61,6 @@ public class FileDownloadController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }
     }
+    */
+
 }

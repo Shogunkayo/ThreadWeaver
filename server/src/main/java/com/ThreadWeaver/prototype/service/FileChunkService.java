@@ -6,7 +6,12 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class FileChunkService {
-    private FileChunkRepository fileChunkRepository;
+    private final FileChunkRepository fileChunkRepository;
+
+    public FileChunkService(FileChunkRepository fileChunkRepository) {
+        this.fileChunkRepository = fileChunkRepository;
+    }
+
     public void saveFileChunk(FileChunk fileChunk) {
         fileChunkRepository.save(fileChunk);
     }

@@ -10,7 +10,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class UploadRequest {
+public class UploadResponse {
     private List<Peer> peers;
     private List<FileChunk> fileChunks;
     private FileMetadata fileMetadata;
