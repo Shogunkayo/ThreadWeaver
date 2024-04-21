@@ -12,14 +12,18 @@ import java.util.Map;
 @Service
 @Setter
 public class SearchService {
-    private FileMetadataRepository fileMetadataRepository;
+    private final FileMetadataRepository fileMetadataRepository;
     private SearchStrategy strategy;
+
+    public SearchService(FileMetadataRepository fileMetadataRepository) {
+        this.fileMetadataRepository = fileMetadataRepository;
+    }
 
     public List<FileMetadata> searchFiles() {
         if (strategy == null) {
             throw new IllegalStateException("Strategy not set");
         }
-
-        return strategy.search(fileMetadataRepository.findAll());
+        List<FileMetadata> files = fileMetadataRepository.findAll();
+        return strategy.search(files);
     }
 }

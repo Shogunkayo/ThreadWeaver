@@ -9,15 +9,17 @@ public class TypeSearchStrategy implements SearchStrategy {
     private final List<String> types;
 
     public TypeSearchStrategy(List<String> types) {
+        super();
         this.types = types;
     }
 
     @Override
     public List<FileMetadata> search(List<FileMetadata> files) {
+
         List<FileMetadata> searchResults = new ArrayList<>();
         for (FileMetadata file : files) {
             if (types.contains(file.getFileType())) {
-                searchResults.add(file);
+                    searchResults.add(file);
             }
         }
 

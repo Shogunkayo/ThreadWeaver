@@ -10,6 +10,7 @@ public class SizeSearchStrategy implements SearchStrategy {
     private final long maxSize;
 
     public SizeSearchStrategy(long minSize, long maxSize) {
+        super();
         this.minSize = minSize;
         this.maxSize = maxSize;
     }
@@ -19,7 +20,8 @@ public class SizeSearchStrategy implements SearchStrategy {
         List<FileMetadata> searchResults = new ArrayList<>();
         for (FileMetadata file : files) {
             if (file.getFileSize() >= minSize && file.getFileSize() <= maxSize) {
-                searchResults.add(file);
+
+                    searchResults.add(file);
             }
         }
 

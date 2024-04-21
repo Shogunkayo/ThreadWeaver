@@ -15,4 +15,9 @@ public class FileChunkService {
     public void saveFileChunk(FileChunk fileChunk) {
         fileChunkRepository.save(fileChunk);
     }
+
+    public FileChunk getFileChunkByChunkNameAndChecksum(String chunkName, String checksum) {
+        return fileChunkRepository.findByChunkNameAndChecksum(chunkName, checksum);
+    }
+
 }

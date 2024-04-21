@@ -1,9 +1,11 @@
 /home/pYr0/code/projects/active/ThreadWeaver/server/src/main/java/com/ThreadWeaver/prototype/controller/FileUploadController.java
 /home/pYr0/code/projects/active/ThreadWeaver/server/src/main/java/com/ThreadWeaver/prototype/repository/ChunkChecksumPersistRepository.java
+/home/pYr0/code/projects/active/ThreadWeaver/server/src/main/java/com/ThreadWeaver/prototype/dto/SearchDTO.java
 /home/pYr0/code/projects/active/ThreadWeaver/server/src/main/java/com/ThreadWeaver/prototype/model/ChunkChecksum.java
 /home/pYr0/code/projects/active/ThreadWeaver/server/src/main/java/com/ThreadWeaver/prototype/controller/FileDownloadController.java
 /home/pYr0/code/projects/active/ThreadWeaver/server/src/main/java/com/ThreadWeaver/prototype/repository/FileMetadataRepository.java
 /home/pYr0/code/projects/active/ThreadWeaver/server/src/main/java/com/ThreadWeaver/prototype/model/UploadResponse.java
+/home/pYr0/code/projects/active/ThreadWeaver/server/src/main/java/com/ThreadWeaver/prototype/model/SizeRequest.java
 /home/pYr0/code/projects/active/ThreadWeaver/server/src/main/java/com/ThreadWeaver/prototype/service/strategies/SizeSearchStrategy.java
 /home/pYr0/code/projects/active/ThreadWeaver/server/src/main/java/com/ThreadWeaver/prototype/dto/PeerDTO.java
 /home/pYr0/code/projects/active/ThreadWeaver/server/src/main/java/com/ThreadWeaver/prototype/service/SearchService.java

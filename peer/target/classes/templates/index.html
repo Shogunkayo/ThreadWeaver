@@ -6,16 +6,29 @@
 </head>
 <body>
     <h1>Welcome to Peer Application</h1>
-    <!-- Button to upload a file -->
     <form action="/upload" method="post" enctype="multipart/form-data">
         <input type="file" name="file" id="file">
         <input type="text" name="description" id="description" placeholder="Enter file description">
         <button type="submit">Upload File</button>
     </form>
 
-    <!-- Button to search for a file -->
-    <form action="/search" method="get">
+    <form action="/search" method="post">
         <input type="text" name="query" id="query" placeholder="Enter search query">
+
+        <input type="radio" id="keyword" name="searchType" value="keyword">
+        <label for="keyword">Keyword</label>
+
+        <input type="radio" id="fileType" name="searchType" value="fileType">
+        <label for="fileType">File Type</label>
+
+        <input type="radio" id="size" name="searchType" value="size">
+        <label for="size">Size Range</label>
+
+        <div id="sizeRange">
+            <input type="number" name="minSize" id="minSize" placeholder="Min Size">
+            <input type="number" name="maxSize" id="maxSize" placeholder="Max Size">
+        </div>
+
         <button type="submit">Search</button>
     </form>
 </body>

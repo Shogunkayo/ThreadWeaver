@@ -8,4 +8,6 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 @Repository
-public interface FileChunkRepository extends JpaRepository<FileChunk, Long> { }
+public interface FileChunkRepository extends JpaRepository<FileChunk, Long> {
+    FileChunk findByChunkNameAndChecksum(String chunkName, String checksum);
+}

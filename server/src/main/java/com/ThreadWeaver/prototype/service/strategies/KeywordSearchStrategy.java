@@ -9,9 +9,9 @@ public class KeywordSearchStrategy implements SearchStrategy {
     private final String keyword;
 
     public KeywordSearchStrategy(String keyword) {
+        super();
         this.keyword = keyword;
     }
-
     @Override
     public List<FileMetadata> search(List<FileMetadata> files) {
         List<FileMetadata> searchResults = new ArrayList<>();
