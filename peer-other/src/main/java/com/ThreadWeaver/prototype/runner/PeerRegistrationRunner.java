@@ -4,8 +4,10 @@ import com.ThreadWeaver.prototype.model.ChunkChecksum;
 import com.ThreadWeaver.prototype.model.PeerRegistrationRequest;
 import com.ThreadWeaver.prototype.service.FileService;
 import com.ThreadWeaver.prototype.service.PeerRegistrationService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
@@ -26,6 +28,9 @@ public class PeerRegistrationRunner implements ApplicationRunner {
     private static final String CHUNKS_FOLDER_PATH = "chunks";
     private static final String FILES_FOLDER_PATH = "files";
 
+    @Autowired
+    Environment environment;
+
     public PeerRegistrationRunner(PeerRegistrationService peerRegistrationService, FileService fileService) {
         this.peerRegistrationService = peerRegistrationService;
         this.fileService = fileService;
@@ -34,7 +39,9 @@ public class PeerRegistrationRunner implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) throws  Exception {
         PeerRegistrationRequest peerRegistrationRequest = new PeerRegistrationRequest();
-        peerRegistrationRequest.setPort(11000);
+        String port = environment.getProperty("local.server.port");
+        assert port != null;
+        peerRegistrationRequest.setPort(Integer.parseInt(port));
         peerRegistrationRequest.setIpAddress(InetAddress.getLocalHost().getHostAddress());
         File filesFolder = new File(FILES_FOLDER_PATH);
         if (!filesFolder.exists()) {

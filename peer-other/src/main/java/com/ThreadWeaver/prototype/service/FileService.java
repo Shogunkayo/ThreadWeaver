@@ -31,4 +31,26 @@ public class FileService {
 
         return checksum;
     }
+
+    public String getFileExtension(String filename) {
+        if (filename == null) {
+            return null;
+        }
+        int lastDotIndex = filename.lastIndexOf('.');
+        if (lastDotIndex == -1 || lastDotIndex == filename.length() - 1) {
+            return null; // No extension found
+        }
+        return filename.substring(lastDotIndex + 1).toLowerCase();
+    }
+
+    public String getFileTypeFromExtension(String fileExtension) {
+        if (fileExtension == null) {
+            return "Unknown";
+        }
+        return switch (fileExtension.toLowerCase()) {
+            case "txt", "csv", "log" -> "text";
+            case "jpg", "jpeg", "png", "gif" -> "image";
+            default -> "Unknown";
+        };
+    }
 }

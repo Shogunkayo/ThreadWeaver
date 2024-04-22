@@ -11,7 +11,7 @@ import java.util.List;
 
 public class ImageFileChunkingAlgorithm implements FileChunkingAlgorithm{
 
-    private static final int CHUNK_PIXELS = 100;
+    private static final int CHUNK_PIXELS = 2000;
     @Override
     public List<byte[]> chunkFile(byte[] fileData) {
         List<byte[]> chunks = new ArrayList<>();

@@ -1,6 +1,7 @@
 /home/pYr0/code/projects/active/ThreadWeaver/peer/src/main/java/com/ThreadWeaver/prototype/controller/upload/FileChunkingAlgorithmFactory.java
 /home/pYr0/code/projects/active/ThreadWeaver/peer/src/main/java/com/ThreadWeaver/prototype/dto/SearchDTO.java
 /home/pYr0/code/projects/active/ThreadWeaver/peer/src/main/java/com/ThreadWeaver/prototype/model/SizeRequest.java
+/home/pYr0/code/projects/active/ThreadWeaver/peer/src/main/java/com/ThreadWeaver/prototype/controller/FileDownloadController.java
 /home/pYr0/code/projects/active/ThreadWeaver/peer/src/main/java/com/ThreadWeaver/prototype/controller/upload/TextFileChunkingAlgorithm.java
 /home/pYr0/code/projects/active/ThreadWeaver/peer/src/main/java/com/ThreadWeaver/prototype/service/DownloadFileService.java
 /home/pYr0/code/projects/active/ThreadWeaver/peer/src/main/java/com/ThreadWeaver/prototype/controller/upload/FileChunkingAlgorithm.java
@@ -14,6 +15,7 @@
 /home/pYr0/code/projects/active/ThreadWeaver/peer/src/main/java/com/ThreadWeaver/prototype/model/ChunkChecksum.java
 /home/pYr0/code/projects/active/ThreadWeaver/peer/src/main/java/com/ThreadWeaver/prototype/controller/FileUploadController.java
 /home/pYr0/code/projects/active/ThreadWeaver/peer/src/main/java/com/ThreadWeaver/prototype/runner/PeerRegistrationRunner.java
+/home/pYr0/code/projects/active/ThreadWeaver/peer/src/main/java/com/ThreadWeaver/prototype/dto/FileDTO.java
 /home/pYr0/code/projects/active/ThreadWeaver/peer/src/main/java/com/ThreadWeaver/prototype/controller/upload/ImageFileChunkingAlgorithm.java
 /home/pYr0/code/projects/active/ThreadWeaver/peer/src/main/java/com/ThreadWeaver/prototype/controller/FileSearchController.java
 /home/pYr0/code/projects/active/ThreadWeaver/peer/src/main/java/com/ThreadWeaver/prototype/PrototypeApplication.java

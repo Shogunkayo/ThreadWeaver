@@ -1,16 +1,17 @@
 package com.ThreadWeaver.prototype.model;
 
+import com.ThreadWeaver.prototype.dto.PeerDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
-public class DownloadResponse<T> {
-    private boolean isChunks;
-    private T data;
+import java.util.List;
 
-    public DownloadResponse(boolean isChunks, T data) {
-        this.isChunks = isChunks;
-        this.data = data;
-    }
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class DownloadResponse {
+    private boolean isChunks;
+    private List<PeerDTO> data;
+    private String filename;
 }

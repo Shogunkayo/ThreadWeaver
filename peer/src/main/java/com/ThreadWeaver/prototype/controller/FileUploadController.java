@@ -154,6 +154,8 @@ public class FileUploadController {
 
                             }
 
+                            System.out.println("FILE SIZE: " + file.getSize());
+
                             FileMetadataDTO fileMetadataDTO = new FileMetadataDTO();
                             fileMetadataDTO.setId(fileMetadataId);
                             fileMetadataDTO.setFilename(file.getOriginalFilename());
@@ -224,7 +226,6 @@ public class FileUploadController {
             byte[] chunkData = chunkDTO.getChunkData();
             String chunkFileName = chunkDTO.getChunkName();
             Path directory = Paths.get("chunks");
-            // Define the path for the chunk file
             Path chunkFilePath = directory.resolve(chunkFileName);
             Files.write(chunkFilePath, chunkData);
 
